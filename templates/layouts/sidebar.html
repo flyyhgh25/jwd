@@ -1,0 +1,13 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+    <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+            {% for n in nav %}
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ n[0] }}">
+                <span class="title">{{ n[1] }}</span>
+                </a>
+            </li>
+			{%endfor%}
+        </ul>
+    </div>
+</nav>

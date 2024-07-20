@@ -1,0 +1,59 @@
+{% include "./layouts/header.html" %}
+{% macro showerror(field) -%}
+  {% if errors %}
+    {% for t in errors%}
+      {% if field in t[0] %}
+      <span style="color:red;font-size: 12px;">
+        {{ t[1][0] }}
+      </span>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{%- endmacro %}
+{% block body %}
+<body>
+  {% include "./layouts/navbar.html" %}
+  <div class="container-fluid">
+    <div class="row">
+      {% include "./layouts/sidebar.html" %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
+      <h3 class="text-center">Tambah Pelatihan</h3>
+      <div class="card p-5">
+        <form action="" method="POST" enctype="multipart/form-data">
+          {{ form.csrf_token }}  
+          <div class="form-group">
+            <div class="row mb-4">
+              <div class="col-lg-6 col-md-12">
+                {{ form.gambar_pelatihan.label }}
+                {{ form.gambar_pelatihan(class_="form-control")}}  {{showerror('gambar_pelatihan')}}  
+              </div>
+              <div class="col-lg-6 col-md-12">
+                {{ form.nama_pelatihan.label }}
+                {{ form.nama_pelatihan(class_="form-control")}} {{showerror('nama_pelatihan')}}
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-lg-6 col-md-12">
+                {{ form.judul.label }}
+                {{ form.judul(class_="form-control")}} {{showerror('judul')}}
+             </div>
+             <div class="col-lg-6 col-md-12">
+               {{ form.deskripsi.label }}
+               {{ form.deskripsi(class_="form-control")}} {{showerror('deskripsi')}}
+             </div>
+
+            </div>
+           
+        
+            
+            <button type="submit" class="btn btn-secondary btn-custom form-control">Submit</button>
+        </form>
+        </div>
+      </main>
+    </div>
+    </div>
+	<script src="{{ url_for('static',filename='scripts/script.js') }}"async defer></script>
+</body>
+{%endblock%}
+{% include "./layouts/footer.html" %}
+</html>
